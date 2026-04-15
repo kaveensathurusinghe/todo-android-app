@@ -1,82 +1,143 @@
-# ToDo Android App
+# To-Do App
 
-This is an Android to‑do app I built for a job assessment. My goal was to keep the architecture clean and the UI simple, modern, and pleasant to use.
+A compact, offline-first Android To‑Do application with local user accounts, built with a clean MVVM-style architecture. This repository is intended as a job-assessment project and demonstrates practical Android engineering patterns, testability, and clean separation of concerns.
 
-## What the app does
+---
 
-- Lets a user register and log in (passwords are stored securely using hashing)
-- Keeps a separate todo list per user
-- Add, edit, delete, and mark todos as completed
-- Stores data locally using Room, so it works completely offline (no backend)
-- Offers simple prioritization and date-based sorting using chips on the home screen
-- Supports light and dark mode following the system theme
-- Uses a strict 3‑color palette:
-  - `#FFFFFF` – main background
-  - `#E9FBFF` – light accent
-  - `#115166` – primary blue
-- Adds haptic feedback on important actions and small animations for a smoother feel
+## Table of contents
 
-## How I built it
+- [Key highlights](#key-highlights)
+- [Technical summary](#technical-summary)
+- [Architecture & project structure](#architecture--project-structure)
+- [Getting started](#getting-started)
+- [Build & run](#build--run)
+- [Testing](#testing)
+- [Security & data handling](#security--data-handling)
+- [Notes for reviewers](#notes-for-reviewers)
+- [License](#license)
 
-- Language: Java
-- Build: Gradle (Kotlin DSL)
-- Architecture: MVVM‑style separation between data, domain, and presentation
-- Persistence: Room database + SharedPreferences
-- UI: AndroidX, Material Components, RecyclerView, ConstraintLayout
+---
 
-Project layout (high level):
+## Key highlights
+
+- Local user accounts with secure password hashing (no external backend required)
+- Per-user persistent to‑do lists using Room (offline-first)
+- MVVM separation: `presentation`, `domain`, `data` layers with simple DI helpers
+- Sorting by due date and priority; add/edit/delete tasks; haptic feedback and light animations
+- Modern AndroidX libraries: LiveData, ViewModel, RecyclerView, Material Components
+
+## Technical summary
+
+- Language: Java (Android app)
+- Build system: Gradle (Kotlin DSL)
+- Android SDK: compileSdk = 36, targetSdk = 36, minSdk = 33
+- Java compatibility: Java 11
+- Persistence: Room database
+- Notable libraries: AndroidX, Material Components, Room, Timber (logging), jBCrypt (password hashing)
+
+## Architecture & project structure
+
+The project follows a lightweight MVVM pattern with a domain/use-case layer.
 
 - `app/src/main/java/com/example/todo`
-  - `data/` – entities, DAOs, database, preferences
-  - `domain/` – models and use cases
-  - `repository/` – bridges between data layer and use cases
-  - `presentation/` – activities, view models, adapters
-  - `utils/` – validation, encryption, date helpers, constants
-- `app/src/main/res` – layouts, themes, colors, drawables, navigation graph
+  - `data/` — local data sources (Room entities, DAOs, repository implementations)
+  - `domain/` — business models and use‑cases (interactors)
+  - `presentation/` — Activities, ViewModels, Adapters and UI logic
+  - `di/` — simple provider modules (`AppModule`, `RepositoryModule`, `DatabaseModule`)
+  - `utils/` — constants and helpers
 
-## How to run it
+Entry points:
 
-### Requirements
+- Application: `BaseApplication` (follows system dark/light mode)
+- Main screens: `MainActivity`, `AddEditTodoActivity`, `LoginActivity`, `RegisterActivity`
 
-- Android Studio (Arctic Fox or newer)
-- Java 11 JDK
-- Android SDK with an emulator or a physical device
+Refer to the package source at `app/src/main/java/com/example/todo` for implementation details.
 
-### From Android Studio
+## Getting started
 
-1. Clone this repository:
-   ```bash
-   git clone <your-repo-url>.git
-   cd ToDoApp
-   ```
-2. Open the project in Android Studio.
-3. Wait for Gradle sync to finish.
-4. Run the `app` module on an emulator or device.
+Prerequisites
 
-### From the command line
+- Android Studio (or CLI with Android SDK installed)
+- Android SDK platform for API 36
+- Java 11
+
+Clone the repository
+
+```bash
+git clone <your-repo-url>.git
+cd ToDoApp
+```
+
+Open the project
+
+- Open the project in Android Studio and allow Gradle to sync and download dependencies.
+
+## Build & run
+
+From Android Studio
+
+1. Select the `app` module.
+2. Run on an emulator or connected device.
+
+From the command line
 
 ```bash
 ./gradlew assembleDebug
+./gradlew installDebug   # installs on a connected device/emulator
 ```
 
-Then install the debug APK from:
+Debug APKs are generated under:
 
 - `app/build/outputs/apk/debug/`
 
-## Release build
+Release build
 
-To generate a signed release APK, use in Android Studio:
+Build a release APK (note: signing configuration required for distribution):
 
-- **Build > Generate Signed Bundle / APK**
+```bash
+./gradlew assembleRelease
+```
 
-By default the release APK is written to:
+Release APK location:
 
-- `app/release/app-release.apk`
+- `app/build/outputs/apk/release/app-release.apk`
 
-You can upload that file to a GitHub Release or distribute it by any other channel you prefer.
+## Testing
 
-## Extra notes
+Unit tests and instrumentation tests (if present) can be executed with Gradle:
 
-- The app is intentionally local‑only; it does not call any remote APIs.
-- Passwords are hashed before being stored.
-- The UI is tuned for both light and dark modes and uses haptics to make key actions feel more responsive.
+```bash
+./gradlew test                 # unit tests
+./gradlew connectedAndroidTest # instrumentation tests (requires device/emulator)
+```
+
+## Security & data handling
+
+- Passwords are hashed using `jBCrypt` before storage.
+- All data is stored locally in a Room database; there are no network calls by default.
+- The database is namespaced per user (each todo has an `ownerUsername` field).
+
+## Notes for reviewers
+
+- Clean separation: business logic is contained in `domain.usecase` classes and exposed via ViewModels.
+- Lightweight DI: the project uses static provider modules (`AppModule`, `RepositoryModule`) so dependencies are explicit and easy to follow.
+- Room DAOs and entities live under `data.local` and map directly to the domain models.
+- UI: `MainActivity` demonstrates a typical list screen with sorting chips, a RecyclerView using `TodoAdapter`, and an activity-based Add/Edit flow.
+
+If you want further improvements or explanations I can:
+
+- Add unit/instrumentation tests where missing
+- Provide a short video or screenshots demonstrating the app
+- Convert DI to Dagger/Hilt for larger-scale projects
+
+## License
+
+This project is provided for assessment and demonstration purposes. Add a license file if you intend to publish or reuse the code.
+
+---
+
+If you'd like, I can also:
+
+- add a CONTRIBUTING section, or
+- generate a short summary document you can attach to your job submission.
+
