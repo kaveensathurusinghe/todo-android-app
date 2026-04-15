@@ -11,10 +11,8 @@ A compact, offline-first Android To‑Do application with local user accounts, b
 - [Architecture & project structure](#architecture--project-structure)
 - [Getting started](#getting-started)
 - [Build & run](#build--run)
-- [Testing](#testing)
 - [Security & data handling](#security--data-handling)
 - [Notes for reviewers](#notes-for-reviewers)
-- [License](#license)
 
 ---
 
@@ -30,19 +28,19 @@ A compact, offline-first Android To‑Do application with local user accounts, b
 
 Below are representative screenshots from the running app (files located in the `screenshots/` folder).
 
-- Main screen  
+- Login screen  
   ![Main screen](screenshots/Screenshot_2026-04-16-00-11-28-49_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Add / Edit task  
+- Register account  
   ![Add/Edit screen](screenshots/Screenshot_2026-04-16-00-11-31-84_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Login screen  
+- Home screen  
   ![Login screen](screenshots/Screenshot_2026-04-16-00-12-24-23_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Settings / filters  
+- Due Date  
   ![Settings screen](screenshots/Screenshot_2026-04-16-00-12-43-34_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Empty / list state  
+- To Do list
   ![Todos list](screenshots/Screenshot_2026-04-16-00-12-50-00_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
 ## Technical summary
