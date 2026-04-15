@@ -16,12 +16,11 @@ import com.example.todo.R;
 import com.example.todo.domain.model.Todo;
 import com.example.todo.presentation.ui.addedit.AddEditTodoActivity;
 import com.example.todo.presentation.viewmodel.TodoViewModel;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.view.HapticFeedbackConstants;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
@@ -49,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoI
         FloatingActionButton fabAdd = findViewById(R.id.fabAddTodo);
         View root = findViewById(R.id.main);
         emptyStateView = findViewById(R.id.tvEmptyState);
+        Chip chipSortDueDate = findViewById(R.id.chipSortDueDate);
+        Chip chipSortPriority = findViewById(R.id.chipSortPriority);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         todoAdapter = new TodoAdapter(this);
@@ -58,6 +59,16 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoI
         todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         currentTodosLiveData = todoViewModel.getTodos();
         currentTodosLiveData.observe(this, this::renderTodos);
+
+        chipSortDueDate.setOnClickListener(v -> {
+            todoViewModel.setSortType(TodoViewModel.SortType.DUE_DATE);
+            reloadTodos();
+        });
+
+        chipSortPriority.setOnClickListener(v -> {
+            todoViewModel.setSortType(TodoViewModel.SortType.PRIORITY);
+            reloadTodos();
+        });
 
         fabAdd.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -100,27 +111,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoI
             root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         }
         todoViewModel.deleteTodo(todo);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_sort_due_date) {
-            todoViewModel.setSortType(TodoViewModel.SortType.DUE_DATE);
-            reloadTodos();
-            return true;
-        } else if (id == R.id.action_sort_priority) {
-            todoViewModel.setSortType(TodoViewModel.SortType.PRIORITY);
-            reloadTodos();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void reloadTodos() {

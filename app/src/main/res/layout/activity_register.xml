@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Create account"
         android:textSize="26sp"
-        android:textColor="@color/blue_primary"
+        android:textColor="?android:textColorPrimary"
+        android:layout_marginTop="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

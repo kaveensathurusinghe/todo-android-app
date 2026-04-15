@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Welcome back"
         android:textSize="26sp"
-        android:textColor="@color/blue_primary"
+        android:textColor="?android:textColorPrimary"
+        android:layout_marginTop="96dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don't have an account? Register"
-        android:textColor="@color/blue_primary"
+        android:textColor="?android:textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
