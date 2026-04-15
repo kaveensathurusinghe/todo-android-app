@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base light application theme with blue & white palette. -->
+    <style name="Base.Theme.ToDoApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/blue_primary_dark</item>
+        <item name="colorSecondary">@color/blue_primary_light</item>
+
+        <item name="android:navigationBarColor">@color/blue_primary_dark</item>
+        <item name="android:statusBarColor">@color/blue_primary_dark</item>
+
+        <!-- Surfaces -->
+        <item name="android:colorBackground">@color/white</item>
+
+        <!-- Material 3 compat -->
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/gray_medium</item>
+    </style>
+
+    <style name="Theme.ToDoApp" parent="Base.Theme.ToDoApp" />
+
+    <!-- Common widgets styling -->
+    <style name="Widget.ToDoApp.Button.Primary" parent="Widget.Material3.Button">
+        <!-- Use theme primary color so it adapts to light/dark -->
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+		<item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.ToDoApp.EditText" parent="Widget.Material3.TextInputEditText.FilledBox">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="Widget.ToDoApp.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:background">@color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+
+    <!-- Core palette requested -->
+    <color name="white">#FFFFFF</color>
+    <color name="accent_light">#E9FBFF</color>
+    <color name="accent_dark">#115166</color>
+
+    <!-- Map theme colors onto core palette -->
+    <color name="blue_primary">#115166</color>
+    <color name="blue_primary_dark">#115166</color>
+    <color name="blue_primary_light">#E9FBFF</color>
+
+    <!-- Neutrals derived from core palette -->
+    <color name="gray_light">#E9FBFF</color>
+    <color name="gray_medium">#115166</color>
+
+    <!-- Icon/text on primary surfaces (light in day, dark in night) -->
+    <color name="color_on_primary">@color/white</color>
+</resources>

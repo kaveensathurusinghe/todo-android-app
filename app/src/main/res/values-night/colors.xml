@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- In dark mode, content on primary (light accent) should be dark blue -->
+    <color name="color_on_primary">@color/accent_dark</color>
+</resources>
