@@ -1,79 +1,82 @@
 # ToDo Android App
 
-This is my implementation of a simple, modern Android to‑do application for a job assessment. I focused on clean architecture, responsive UI (light/dark themes), and a smooth user experience.
+This is an Android to‑do app I built for a job assessment. My goal was to keep the architecture clean and the UI simple, modern, and pleasant to use.
 
-## Features
+## What the app does
 
-- User registration and login with secure password hashing
-- Per-user todo lists (each user only sees their own tasks)
+- Lets a user register and log in (passwords are stored securely using hashing)
+- Keeps a separate todo list per user
 - Add, edit, delete, and mark todos as completed
-- Local data persistence using Room (no backend required)
-- Simple prioritization and date-based sorting with chips on the home screen
-- System-following light and dark themes using a strict palette:
-  - `#FFFFFF` (background)
-  - `#E9FBFF` (accent light)
-  - `#115166` (primary blue)
-- Haptic feedback on key interactions (buttons, toggles, actions)
-- Polished UI with animations and empty-state messaging
+- Stores data locally using Room, so it works completely offline (no backend)
+- Offers simple prioritization and date-based sorting using chips on the home screen
+- Supports light and dark mode following the system theme
+- Uses a strict 3‑color palette:
+  - `#FFFFFF` – main background
+  - `#E9FBFF` – light accent
+  - `#115166` – primary blue
+- Adds haptic feedback on important actions and small animations for a smoother feel
 
-## Tech Stack
+## How I built it
 
 - Language: Java
-- Minimum Android SDK: (configured in `app/build.gradle.kts`)
-- Build system: Gradle (Kotlin DSL)
-- Architecture: MVVM-style with separate data, domain, and presentation layers
+- Build: Gradle (Kotlin DSL)
+- Architecture: MVVM‑style separation between data, domain, and presentation
 - Persistence: Room database + SharedPreferences
 - UI: AndroidX, Material Components, RecyclerView, ConstraintLayout
 
-## Project Structure
+Project layout (high level):
 
 - `app/src/main/java/com/example/todo`
-  - `data/` – Room entities, DAOs, database, preferences
-  - `domain/` – Models and use cases
-  - `repository/` – Abstractions over data sources
-  - `presentation/` – Activities, view models, adapters
-  - `utils/` – Validation, encryption, date utilities, constants
-- `app/src/main/res` – Layouts, themes, colors, drawables, navigation
+  - `data/` – entities, DAOs, database, preferences
+  - `domain/` – models and use cases
+  - `repository/` – bridges between data layer and use cases
+  - `presentation/` – activities, view models, adapters
+  - `utils/` – validation, encryption, date helpers, constants
+- `app/src/main/res` – layouts, themes, colors, drawables, navigation graph
 
-## Getting Started
+## How to run it
 
-### Prerequisites
+### Requirements
 
-- Android Studio (Arctic Fox or newer recommended)
+- Android Studio (Arctic Fox or newer)
 - Java 11 JDK
-- Android SDK and an emulator or physical device
+- Android SDK with an emulator or a physical device
 
-### Running the App (Debug)
+### From Android Studio
 
-1. Clone the repository:
+1. Clone this repository:
    ```bash
    git clone <your-repo-url>.git
    cd ToDoApp
    ```
 2. Open the project in Android Studio.
-3. Let Gradle sync finish.
-4. Run the `app` module on an emulator or a connected device.
+3. Wait for Gradle sync to finish.
+4. Run the `app` module on an emulator or device.
 
-Or from the command line:
+### From the command line
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-Then install the generated APK from `app/build/outputs/apk/debug/` on a device or emulator.
+Then install the debug APK from:
 
-## Release APK
+- `app/build/outputs/apk/debug/`
 
-To create a signed release APK, I use **Build > Generate Signed Bundle / APK** in Android Studio.
+## Release build
 
-The generated release APK is typically located at:
+To generate a signed release APK, use in Android Studio:
+
+- **Build > Generate Signed Bundle / APK**
+
+By default the release APK is written to:
 
 - `app/release/app-release.apk`
 
-I can attach this file to a GitHub Release so others can download and install the app easily.
+You can upload that file to a GitHub Release or distribute it by any other channel you prefer.
 
-## Notes
+## Extra notes
 
-- This project is intentionally local-only: there is no remote backend.
-- Passwords are never stored in plain text; I hash them before persistence.
-- The UI is tuned for both light and dark modes and uses haptic feedback to make interactions feel more responsive.
+- The app is intentionally local‑only; it does not call any remote APIs.
+- Passwords are hashed before being stored.
+- The UI is tuned for both light and dark modes and uses haptics to make key actions feel more responsive.
