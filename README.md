@@ -102,15 +102,6 @@ Release APK location:
 
 - `app/build/outputs/apk/release/app-release.apk`
 
-## Testing
-
-Unit tests and instrumentation tests (if present) can be executed with Gradle:
-
-```bash
-./gradlew test                 # unit tests
-./gradlew connectedAndroidTest # instrumentation tests (requires device/emulator)
-```
-
 ## Security & data handling
 
 - Passwords are hashed using `jBCrypt` before storage.
