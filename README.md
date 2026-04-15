@@ -1,11 +1,11 @@
 # ToDo Android App
 
-A simple, modern Android to-do application built as a job assessment. It focuses on clean architecture, responsive UI (light/dark themes), and a smooth user experience.
+This is my implementation of a simple, modern Android to‑do application for a job assessment. I focused on clean architecture, responsive UI (light/dark themes), and a smooth user experience.
 
 ## Features
 
 - User registration and login with secure password hashing
-- Per-user todo lists (each user sees only their own tasks)
+- Per-user todo lists (each user only sees their own tasks)
 - Add, edit, delete, and mark todos as completed
 - Local data persistence using Room (no backend required)
 - Simple prioritization and date-based sorting with chips on the home screen
@@ -19,9 +19,9 @@ A simple, modern Android to-do application built as a job assessment. It focuses
 ## Tech Stack
 
 - Language: Java
-- Minimum Android SDK: (set in `app/build.gradle.kts`)
+- Minimum Android SDK: (configured in `app/build.gradle.kts`)
 - Build system: Gradle (Kotlin DSL)
-- Architecture: MVVM-style with distinct data, domain, and presentation layers
+- Architecture: MVVM-style with separate data, domain, and presentation layers
 - Persistence: Room database + SharedPreferences
 - UI: AndroidX, Material Components, RecyclerView, ConstraintLayout
 
@@ -41,7 +41,7 @@ A simple, modern Android to-do application built as a job assessment. It focuses
 
 - Android Studio (Arctic Fox or newer recommended)
 - Java 11 JDK
-- Android SDK and emulator/device set up
+- Android SDK and an emulator or physical device
 
 ### Running the App (Debug)
 
@@ -54,26 +54,26 @@ A simple, modern Android to-do application built as a job assessment. It focuses
 3. Let Gradle sync finish.
 4. Run the `app` module on an emulator or a connected device.
 
-Alternatively, from the command line:
+Or from the command line:
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-Then install the generated APK from `app/build/outputs/apk/debug/` onto a device or emulator.
+Then install the generated APK from `app/build/outputs/apk/debug/` on a device or emulator.
 
 ## Release APK
 
-A signed release APK can be generated via **Build > Generate Signed Bundle / APK** in Android Studio.
+To create a signed release APK, I use **Build > Generate Signed Bundle / APK** in Android Studio.
 
-If you already generated one, it will typically be located at:
+The generated release APK is typically located at:
 
 - `app/release/app-release.apk`
 
-You can attach this file to a GitHub Release so others can download and install the app easily.
+I can attach this file to a GitHub Release so others can download and install the app easily.
 
 ## Notes
 
 - This project is intentionally local-only: there is no remote backend.
-- Passwords are never stored in plain text; a hashing utility is used before persistence.
+- Passwords are never stored in plain text; I hash them before persistence.
 - The UI is tuned for both light and dark modes and uses haptic feedback to make interactions feel more responsive.
