@@ -34,10 +34,10 @@ Below are representative screenshots from the running app (files located in the 
 - Register account  
   ![Add/Edit screen](screenshots/Screenshot_2026-04-16-00-11-31-84_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Home screen  
+- Due Date
   ![Login screen](screenshots/Screenshot_2026-04-16-00-12-24-23_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
-- Due Date  
+- To Do Creation 
   ![Settings screen](screenshots/Screenshot_2026-04-16-00-12-43-34_f212e371a3a872b6e47c8c7145b7047d.jpg)
 
 - To Do list
